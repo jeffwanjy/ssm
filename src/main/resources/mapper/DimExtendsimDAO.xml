@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chatRobot.dao.DimExtendsimDAO">
+  <resultMap id="BaseResultMap" type="com.chatRobot.model.DimExtendsim">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="scenario_name" jdbcType="VARCHAR" property="scenarioName" />
+    <result column="freq_fct" jdbcType="INTEGER" property="freqFct" />
+    <result column="prod_cd" jdbcType="VARCHAR" property="prodCd" />
+    <result column="target_days_fct" jdbcType="INTEGER" property="targetDaysFct" />
+    <result column="total_demand_rsp" jdbcType="INTEGER" property="totalDemandRsp" />
+    <result column="initial_inventory_rsp" jdbcType="INTEGER" property="initialInventoryRsp" />
+    <result column="day_rsp" jdbcType="INTEGER" property="dayRsp" />
+    <result column="inventory_rsp" jdbcType="INTEGER" property="inventoryRsp" />
+    <result column="dc_check_rsp" jdbcType="INTEGER" property="dcCheckRsp" />
+    <result column="instock_record_rsp" jdbcType="INTEGER" property="instockRecordRsp" />
+    <result column="actual_sales_rsp" jdbcType="INTEGER" property="actualSalesRsp" />
+    <result column="last_seven_days_sales" jdbcType="INTEGER" property="lastSevenDaysSales" />
+    <result column="accumulated_sales" jdbcType="INTEGER" property="accumulatedSales" />
+    <result column="replen_qty_rsp" jdbcType="INTEGER" property="replenQtyRsp" />
+    <result column="ordering_cost_rsp" jdbcType="VARCHAR" property="orderingCostRsp" />
+    <result column="transporting_cost_rsp" jdbcType="VARCHAR" property="transportingCostRsp" />
+    <result column="holding_cost_rsp" jdbcType="VARCHAR" property="holdingCostRsp" />
+    <result column="pos_id" jdbcType="INTEGER" property="posId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="no_replen" jdbcType="INTEGER" property="noReplen" />
+    <result column="total_replen" jdbcType="INTEGER" property="totalReplen" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, scenario_name, freq_fct, prod_cd, target_days_fct, total_demand_rsp, initial_inventory_rsp, 
+    day_rsp, inventory_rsp, dc_check_rsp, instock_record_rsp, actual_sales_rsp, last_seven_days_sales, 
+    accumulated_sales, replen_qty_rsp, ordering_cost_rsp, transporting_cost_rsp, holding_cost_rsp, 
+    pos_id, user_id, flag, no_replen, total_replen, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dim_extendsim
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dim_extendsim
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.chatRobot.model.DimExtendsim" useGeneratedKeys="true">
+    insert into dim_extendsim (scenario_name, freq_fct, prod_cd, 
+      target_days_fct, total_demand_rsp, initial_inventory_rsp, 
+      day_rsp, inventory_rsp, dc_check_rsp, 
+      instock_record_rsp, actual_sales_rsp, last_seven_days_sales, 
+      accumulated_sales, replen_qty_rsp, ordering_cost_rsp, 
+      transporting_cost_rsp, holding_cost_rsp, pos_id, 
+      user_id, flag, no_replen, 
+      total_replen, update_time)
+    values (#{scenarioName,jdbcType=VARCHAR}, #{freqFct,jdbcType=INTEGER}, #{prodCd,jdbcType=VARCHAR}, 
+      #{targetDaysFct,jdbcType=INTEGER}, #{totalDemandRsp,jdbcType=INTEGER}, #{initialInventoryRsp,jdbcType=INTEGER}, 
+      #{dayRsp,jdbcType=INTEGER}, #{inventoryRsp,jdbcType=INTEGER}, #{dcCheckRsp,jdbcType=INTEGER}, 
+      #{instockRecordRsp,jdbcType=INTEGER}, #{actualSalesRsp,jdbcType=INTEGER}, #{lastSevenDaysSales,jdbcType=INTEGER}, 
+      #{accumulatedSales,jdbcType=INTEGER}, #{replenQtyRsp,jdbcType=INTEGER}, #{orderingCostRsp,jdbcType=VARCHAR}, 
+      #{transportingCostRsp,jdbcType=VARCHAR}, #{holdingCostRsp,jdbcType=VARCHAR}, #{posId,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER}, #{flag,jdbcType=INTEGER}, #{noReplen,jdbcType=INTEGER}, 
+      #{totalReplen,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.chatRobot.model.DimExtendsim" useGeneratedKeys="true">
+    insert into dim_extendsim
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="scenarioName != null">
+        scenario_name,
+      </if>
+      <if test="freqFct != null">
+        freq_fct,
+      </if>
+      <if test="prodCd != null">
+        prod_cd,
+      </if>
+      <if test="targetDaysFct != null">
+        target_days_fct,
+      </if>
+      <if test="totalDemandRsp != null">
+        total_demand_rsp,
+      </if>
+      <if test="initialInventoryRsp != null">
+        initial_inventory_rsp,
+      </if>
+      <if test="dayRsp != null">
+        day_rsp,
+      </if>
+      <if test="inventoryRsp != null">
+        inventory_rsp,
+      </if>
+      <if test="dcCheckRsp != null">
+        dc_check_rsp,
+      </if>
+      <if test="instockRecordRsp != null">
+        instock_record_rsp,
+      </if>
+      <if test="actualSalesRsp != null">
+        actual_sales_rsp,
+      </if>
+      <if test="lastSevenDaysSales != null">
+        last_seven_days_sales,
+      </if>
+      <if test="accumulatedSales != null">
+        accumulated_sales,
+      </if>
+      <if test="replenQtyRsp != null">
+        replen_qty_rsp,
+      </if>
+      <if test="orderingCostRsp != null">
+        ordering_cost_rsp,
+      </if>
+      <if test="transportingCostRsp != null">
+        transporting_cost_rsp,
+      </if>
+      <if test="holdingCostRsp != null">
+        holding_cost_rsp,
+      </if>
+      <if test="posId != null">
+        pos_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="noReplen != null">
+        no_replen,
+      </if>
+      <if test="totalReplen != null">
+        total_replen,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="scenarioName != null">
+        #{scenarioName,jdbcType=VARCHAR},
+      </if>
+      <if test="freqFct != null">
+        #{freqFct,jdbcType=INTEGER},
+      </if>
+      <if test="prodCd != null">
+        #{prodCd,jdbcType=VARCHAR},
+      </if>
+      <if test="targetDaysFct != null">
+        #{targetDaysFct,jdbcType=INTEGER},
+      </if>
+      <if test="totalDemandRsp != null">
+        #{totalDemandRsp,jdbcType=INTEGER},
+      </if>
+      <if test="initialInventoryRsp != null">
+        #{initialInventoryRsp,jdbcType=INTEGER},
+      </if>
+      <if test="dayRsp != null">
+        #{dayRsp,jdbcType=INTEGER},
+      </if>
+      <if test="inventoryRsp != null">
+        #{inventoryRsp,jdbcType=INTEGER},
+      </if>
+      <if test="dcCheckRsp != null">
+        #{dcCheckRsp,jdbcType=INTEGER},
+      </if>
+      <if test="instockRecordRsp != null">
+        #{instockRecordRsp,jdbcType=INTEGER},
+      </if>
+      <if test="actualSalesRsp != null">
+        #{actualSalesRsp,jdbcType=INTEGER},
+      </if>
+      <if test="lastSevenDaysSales != null">
+        #{lastSevenDaysSales,jdbcType=INTEGER},
+      </if>
+      <if test="accumulatedSales != null">
+        #{accumulatedSales,jdbcType=INTEGER},
+      </if>
+      <if test="replenQtyRsp != null">
+        #{replenQtyRsp,jdbcType=INTEGER},
+      </if>
+      <if test="orderingCostRsp != null">
+        #{orderingCostRsp,jdbcType=VARCHAR},
+      </if>
+      <if test="transportingCostRsp != null">
+        #{transportingCostRsp,jdbcType=VARCHAR},
+      </if>
+      <if test="holdingCostRsp != null">
+        #{holdingCostRsp,jdbcType=VARCHAR},
+      </if>
+      <if test="posId != null">
+        #{posId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="noReplen != null">
+        #{noReplen,jdbcType=INTEGER},
+      </if>
+      <if test="totalReplen != null">
+        #{totalReplen,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chatRobot.model.DimExtendsim">
+    update dim_extendsim
+    <set>
+      <if test="scenarioName != null">
+        scenario_name = #{scenarioName,jdbcType=VARCHAR},
+      </if>
+      <if test="freqFct != null">
+        freq_fct = #{freqFct,jdbcType=INTEGER},
+      </if>
+      <if test="prodCd != null">
+        prod_cd = #{prodCd,jdbcType=VARCHAR},
+      </if>
+      <if test="targetDaysFct != null">
+        target_days_fct = #{targetDaysFct,jdbcType=INTEGER},
+      </if>
+      <if test="totalDemandRsp != null">
+        total_demand_rsp = #{totalDemandRsp,jdbcType=INTEGER},
+      </if>
+      <if test="initialInventoryRsp != null">
+        initial_inventory_rsp = #{initialInventoryRsp,jdbcType=INTEGER},
+      </if>
+      <if test="dayRsp != null">
+        day_rsp = #{dayRsp,jdbcType=INTEGER},
+      </if>
+      <if test="inventoryRsp != null">
+        inventory_rsp = #{inventoryRsp,jdbcType=INTEGER},
+      </if>
+      <if test="dcCheckRsp != null">
+        dc_check_rsp = #{dcCheckRsp,jdbcType=INTEGER},
+      </if>
+      <if test="instockRecordRsp != null">
+        instock_record_rsp = #{instockRecordRsp,jdbcType=INTEGER},
+      </if>
+      <if test="actualSalesRsp != null">
+        actual_sales_rsp = #{actualSalesRsp,jdbcType=INTEGER},
+      </if>
+      <if test="lastSevenDaysSales != null">
+        last_seven_days_sales = #{lastSevenDaysSales,jdbcType=INTEGER},
+      </if>
+      <if test="accumulatedSales != null">
+        accumulated_sales = #{accumulatedSales,jdbcType=INTEGER},
+      </if>
+      <if test="replenQtyRsp != null">
+        replen_qty_rsp = #{replenQtyRsp,jdbcType=INTEGER},
+      </if>
+      <if test="orderingCostRsp != null">
+        ordering_cost_rsp = #{orderingCostRsp,jdbcType=VARCHAR},
+      </if>
+      <if test="transportingCostRsp != null">
+        transporting_cost_rsp = #{transportingCostRsp,jdbcType=VARCHAR},
+      </if>
+      <if test="holdingCostRsp != null">
+        holding_cost_rsp = #{holdingCostRsp,jdbcType=VARCHAR},
+      </if>
+      <if test="posId != null">
+        pos_id = #{posId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="noReplen != null">
+        no_replen = #{noReplen,jdbcType=INTEGER},
+      </if>
+      <if test="totalReplen != null">
+        total_replen = #{totalReplen,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chatRobot.model.DimExtendsim">
+    update dim_extendsim
+    set scenario_name = #{scenarioName,jdbcType=VARCHAR},
+      freq_fct = #{freqFct,jdbcType=INTEGER},
+      prod_cd = #{prodCd,jdbcType=VARCHAR},
+      target_days_fct = #{targetDaysFct,jdbcType=INTEGER},
+      total_demand_rsp = #{totalDemandRsp,jdbcType=INTEGER},
+      initial_inventory_rsp = #{initialInventoryRsp,jdbcType=INTEGER},
+      day_rsp = #{dayRsp,jdbcType=INTEGER},
+      inventory_rsp = #{inventoryRsp,jdbcType=INTEGER},
+      dc_check_rsp = #{dcCheckRsp,jdbcType=INTEGER},
+      instock_record_rsp = #{instockRecordRsp,jdbcType=INTEGER},
+      actual_sales_rsp = #{actualSalesRsp,jdbcType=INTEGER},
+      last_seven_days_sales = #{lastSevenDaysSales,jdbcType=INTEGER},
+      accumulated_sales = #{accumulatedSales,jdbcType=INTEGER},
+      replen_qty_rsp = #{replenQtyRsp,jdbcType=INTEGER},
+      ordering_cost_rsp = #{orderingCostRsp,jdbcType=VARCHAR},
+      transporting_cost_rsp = #{transportingCostRsp,jdbcType=VARCHAR},
+      holding_cost_rsp = #{holdingCostRsp,jdbcType=VARCHAR},
+      pos_id = #{posId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      flag = #{flag,jdbcType=INTEGER},
+      no_replen = #{noReplen,jdbcType=INTEGER},
+      total_replen = #{totalReplen,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <select id="selectInventoryRsp" resultType="java.lang.Integer">
+  SELECT `dim_extendsim`.`inventory_rsp`
+  FROM `dim_extendsim`
+  WHERE  `dim_extendsim`.`day_rsp` = #{dayRsp}-1
+  and user_id = 123 and pos_id = 136307 and scenario_name =  #{scenarioName}
+ </select>
+
+    <select id="selectInventoryRspleadDays" resultType="java.lang.Integer">
+  select ((SELECT `dim_extendsim`.`inventory_rsp`
+  FROM `dim_extendsim`
+  WHERE ( `dim_extendsim`.`day_rsp` = #{dayRsp}-1) and user_id = 123 and pos_id = 136307
+   and scenario_name =  #{scenarioName} and target_days_fct =  #{targetDay} and freq_fct =  #{fre})
+  +
+  (SELECT `dim_extendsim`.`replen_qty_rsp`
+  FROM `dim_extendsim`
+  WHERE ( `dim_extendsim`.`day_rsp` = #{dayRsp}-#{leadDays} and user_id = 123 and pos_id = 136307
+  and scenario_name =  #{scenarioName} and target_days_fct =  #{targetDay} and freq_fct =  #{fre}) ) )  inventoryRsp
+  from  dim_extendsim dim
+   where  dim.day_rsp= #{dayRsp}-1
+   and user_id = 123 and pos_id = 136307  and scenario_name =  #{scenarioName} and target_days_fct =  #{targetDay} and freq_fct =  #{fre}
+  </select>
+
+    <select id="selectTotalSale" resultType="java.lang.Integer">
+   select sum(actual_sales_rsp) totalSale from dim_extendsim where day_rsp &lt;= #{dayRsp}-1
+   and user_id = 123 and pos_id = 136307  and scenario_name =  #{scenarioName} and target_days_fct =  #{targetDay} and freq_fct =  #{fre}
+ </select>
+
+    <select id="selecttotalReplen" resultType="java.lang.Integer">
+   select sum(replen_qty_rsp) totalReplen from dim_extendsim where day_rsp &lt;= #{dayRsp}-1
+   and user_id = 123 and pos_id = 136307  and scenario_name =  #{scenarioName} and target_days_fct =  #{targetDay} and freq_fct =  #{fre}
+ </select>
+
+    <select id="selectsevenSales" resultType="java.lang.Integer">
+   select (
+   (select sum(actual_sales_rsp) from dim_extendsim where day_rsp &lt;= #{dayRsp}-1 and user_id = 123 and pos_id = 136307
+    and scenario_name =  #{scenarioName} and target_days_fct =  #{targetDay} and freq_fct =  #{fre}) -
+   (select sum(actual_sales_rsp) from dim_extendsim where day_rsp &lt;= #{dayRsp}-7 and user_id = 123 and pos_id = 136307
+   and scenario_name =  #{scenarioName} and target_days_fct =  #{targetDay} and freq_fct =  #{fre}))  sevenSales
+   from  dim_extendsim where  day_rsp = #{dayRsp}-1
+   and user_id = 123 and pos_id = 136307  and scenario_name =  #{scenarioName} and target_days_fct =  #{targetDay} and freq_fct =  #{fre}
+ </select>
+
+  <select id="selectsevenSales1" resultType="java.lang.Integer">
+   select accumulated_sales
+   from  dim_extendsim where  day_rsp = #{dayRsp}-7
+   and user_id = 123 and pos_id = 136307  and scenario_name =  #{scenarioName} and target_days_fct =  #{targetDay} and freq_fct =  #{fre}
+ </select>
+
+    <select id="selectnoReplen" resultType="java.lang.Integer">
+   select (no_replen - replen_qty_rsp)  noReplen
+   from  dim_extendsim where  day_rsp = #{dayRsp}-1
+   and user_id = 123 and pos_id = 136307  and scenario_name =  #{scenarioName}
+ </select>
+
+    <select id="selectReplenQtyRsp" resultType="java.lang.Integer">
+   SELECT
+   ( ceiling( ( ( `dim_extendsim`.`last_seven_days_sales` / 7 ) * `dim_extendsim`.`target_days_fct` ) ) -
+   `dim_extendsim`.`inventory_rsp` ) aa
+	FROM
+	`dim_extendsim`
+	WHERE
+	 `dim_extendsim`.`day_rsp` = #{dayRsp}
+	 and user_id = 123 and pos_id = 136307   and scenario_name =  #{scenarioName}
+</select>
+
+  <insert id="batchInsertListDim" parameterType="java.util.List">
+    insert into dim_extendsim(
+    scenario_name ,
+    freq_fct ,
+    prod_cd ,
+    target_days_fct ,
+    total_demand_rsp,
+    initial_inventory_rsp,
+    day_rsp ,
+    inventory_rsp ,
+    dc_check_rsp ,
+    instock_record_rsp ,
+    actual_sales_rsp,
+    last_seven_days_sales ,
+    accumulated_sales,
+    replen_qty_rsp,
+    ordering_cost_rsp ,
+    transporting_cost_rsp,
+    holding_cost_rsp ,
+    pos_id ,
+    user_id ,
+    flag  ,
+    no_replen ,
+    total_replen ,
+    update_time)
+    values
+    <foreach item="item" index="index" collection="listD" separator=",">
+      (
+       #{item.scenarioName},
+       #{item.freqFct},
+       #{item.prodCd},
+       #{item.targetDaysFct},
+       #{item.totalDemandRsp},
+       #{item.initialInventoryRsp},
+       #{item.dayRsp},
+       #{item.inventoryRsp},
+       #{item.dcCheckRsp},
+       #{item.instockRecordRsp},
+       #{item.actualSalesRsp},
+       #{item.lastSevenDaysSales},
+       #{item.accumulatedSales},
+       #{item.replenQtyRsp},
+       #{item.orderingCostRsp},
+       #{item.transportingCostRsp},
+       #{item.holdingCostRsp},
+       #{item.posId},
+       #{item.userId},
+       #{item.flag},
+       #{item.noReplen},
+       #{item.totalReplen},
+       #{item.updateTime})
+    </foreach>
+  </insert>
+
+
+
+
+
+</mapper>

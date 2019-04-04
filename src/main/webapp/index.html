@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<script>
+    function selectUser() {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("test").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("POST", "user/showUser.do", true);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.send("id=1");
+    }
+    function getWaterMark1() {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("POST", "water/watermark.do", true);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.send("srcImgPath");
+        xmlhttp.send("tarImgPath");
+        xmlhttp.send("waterMarkContent");
+    }
+
+    function getWaterMark(){
+        alert("开始测试！");
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("srcImgPath").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("POST", "user1/showUser1.do", true);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        alert(" 测试成功！");
+
+    }
+
+
+
+
+</script>
+<body>
+<p id="test">Hello World!</p>
+<button type="button" onclick="selectUser()">onclick test</button>
+
+
+
+
+<form action="user1/showUser1.do" method="post" enctype="multipart/form-data">
+    First add: <input type="text" name="srcImgPath" />
+    Last add: <input type="text" name="tarImgPath" />
+    水印: <input type="text" name="waterMarkContent" />
+    <button type="button" onclick="getWaterMark()">加水印</button>
+</form>
+
+----------------------------------------------------------------------------------------
+
+
+
+</body>
+</html>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chatRobot.dao.DimStepCaDAO">
+  <resultMap id="BaseResultMap" type="com.chatRobot.model.DimStepCa">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="record_id" jdbcType="INTEGER" property="recordId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="value" jdbcType="VARCHAR" property="value" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="pos_id" jdbcType="INTEGER" property="posId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, record_id, `name`, `value`, update_time, pos_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dim_step_ca
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dim_step_ca
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.chatRobot.model.DimStepCa" useGeneratedKeys="true">
+    insert into dim_step_ca (user_id, record_id, `name`, 
+      `value`, update_time, pos_id
+      )
+    values (#{userId,jdbcType=INTEGER}, #{recordId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{value,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{posId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.chatRobot.model.DimStepCa" useGeneratedKeys="true">
+    insert into dim_step_ca
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="recordId != null">
+        record_id,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="value != null">
+        `value`,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="posId != null">
+        pos_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="recordId != null">
+        #{recordId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="posId != null">
+        #{posId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chatRobot.model.DimStepCa">
+    update dim_step_ca
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="recordId != null">
+        record_id = #{recordId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        `value` = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="posId != null">
+        pos_id = #{posId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chatRobot.model.DimStepCa">
+    update dim_step_ca
+    set user_id = #{userId,jdbcType=INTEGER},
+      record_id = #{recordId,jdbcType=INTEGER},
+      `name` = #{name,jdbcType=VARCHAR},
+      `value` = #{value,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      pos_id = #{posId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectNameByRecordId" resultType="java.lang.String">
+    select ca.value from dim_step_ca ca
+    where record_id = #{record_id}
+    and name= #{name}
+    and user_id = #{userId} and pos_id = #{posId}
+  </select>
+
+  <select id="selectNameList" resultType="java.lang.String">
+    select ca.value from dim_step_ca ca
+    where  name= 'Name'
+    and user_id = #{userId} and pos_id = #{posId}
+    ORDER BY record_id
+  </select>
+
+  <select id="selectListByRecordId" resultType="com.chatRobot.model.DimStepCa">
+    select * from dim_step_ca
+    where record_id = #{record_id} AND `name` Not in ('-1','-2','Name','Field')
+    and user_id = #{userId} and pos_id = #{posId}
+    ORDER BY (name + 1)
+  </select>
+
+
+
+
+
+
+</mapper>
